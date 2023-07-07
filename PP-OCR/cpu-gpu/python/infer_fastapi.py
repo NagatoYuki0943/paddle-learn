@@ -254,7 +254,7 @@ async def ocr_url(image: ImageUrl = Body()):
     return detects
 
 
-ALLOW_SUFFIXES = [".jpg", ".jpeg", ".png", ".fig", ".tiff", ".webp"]
+ALLOW_SUFFIXES = [".jpg", ".jpeg", ".png", ".gif", ".tiff", ".webp"]
 @app.post("/ocr_image")
 async def ocr_image(file: UploadFile = File(description="A Pic"),):
     # suffix
