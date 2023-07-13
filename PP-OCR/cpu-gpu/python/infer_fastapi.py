@@ -234,8 +234,8 @@ def check_is_url(url: str) -> bool:
 
 # 查询参数 q 的类型为 str，默认值为 None，因此它是可选的
 # http://127.0.0.1:8001/ocr
-@app.post("/ocr_url")
-async def ocr_url(image: ImageUrl = Body()):
+@app.post("/ocr_url", tags=["ocr"], description="传递图片url进行ocr识别")
+async def ocr_url(image: ImageUrl = Body()) -> list:
     try:
         # Read the input image
         if check_is_url(image.url):
@@ -255,11 +255,11 @@ async def ocr_url(image: ImageUrl = Body()):
 
 
 ALLOW_SUFFIXES = [".jpg", ".jpeg", ".png", ".gif", ".tiff", ".webp"]
-@app.post("/ocr_image")
-async def ocr_image(file: UploadFile = File(description="A Pic"),):
+@app.post("/ocr_image", tags=["ocr"], description="上传图片进行ocr识别")
+async def ocr_image(file: UploadFile = File(description="A Pic")) -> list:
     # suffix
     filename = Path(file.filename)
-    suffix = filename.suffix
+    suffix   = filename.suffix
     if suffix not in ALLOW_SUFFIXES:
         raise HTTPException(
             status_code=400,
