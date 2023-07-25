@@ -22,31 +22,35 @@ import re
 from urllib.request import urlopen
 import numpy as np
 from pathlib import Path
+from dataclasses import dataclass, field
 
 
+@dataclass
 class Config:
-    det_model: str      # Path of Detection model of PPOCR.
-    cls_model: str      # Path of Classification model of PPOCR.
-    rec_model: str      # Path of Recognization model of PPOCR.
-    rec_label_file: str # Path of Recognization label of PPOCR.
-    device: int         # Type of inference device, support 'cpu' or 'gpu'.
-    device_id: int      # Define which GPU card used to run model.
-    cls_bs: int         # Classification model inference batch size.
-    rec_bs: int         # Recognition model inference batch size
-    backend: str        # Type of inference backend, support ort/trt/paddle/openvino, default 'openvino' for cpu, 'tensorrt' for gpu
+    det_model: str                              # Path of Detection model of PPOCR.
+    cls_model: str                              # Path of Classification model of PPOCR.
+    rec_model: str                              # Path of Recognization model of PPOCR.
+    rec_label_file: str                         # Path of Recognization label of PPOCR.
+    device: str                                 # Type of inference device, support 'cpu' or 'gpu'.
+    device_id: int                              # Define which GPU card used to run model.
+    cls_bs: int                                 # Classification model inference batch size.
+    rec_bs: int                                 # Recognition model inference batch size
+    backend: str  = field(default="default")    # Type of inference backend, support ort/trt/paddle/openvino, default 'openvino' for cpu, 'tensorrt' for gpu
+    # default 必须放在最后面
 
 
 def parse_arguments():
-    config = Config()
-    config.det_model = r"ch_PP-OCRv3_det_infer"
-    config.cls_model = r"ch_ppocr_mobile_v2.0_cls_infer"
-    config.rec_model = r"ch_PP-OCRv3_rec_infer"
-    config.rec_label_file = r"ppocr_keys_v1.txt"
-    config.device = r"cpu"
-    config.device_id = 0
-    config.cls_bs = 1
-    config.rec_bs = 6
-    config.backend = "default"
+    config = Config(
+        det_model = r"ch_PP-OCRv3_det_infer",
+        cls_model = r"ch_ppocr_mobile_v2.0_cls_infer",
+        rec_model = r"ch_PP-OCRv3_rec_infer",
+        rec_label_file = r"ppocr_keys_v1.txt",
+        device = "cpu",
+        device_id = 0,
+        cls_bs = 1,
+        rec_bs = 6,
+        backend = "default",
+    )
     return config
 
 
