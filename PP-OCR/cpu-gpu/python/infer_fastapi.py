@@ -286,6 +286,7 @@ async def ocr_image(file: UploadFile = File(description="A Pic")) -> list:
 #   main: main.py 文件(一个 Python「模块」)。
 #   app: 在 main.py 文件中通过 app = FastAPI() 创建的对象。
 #   --reload: 让服务器在更新代码后重新启动。仅在开发时使用该选项。
+# browser: http://127.0.0.1:8001/docs
 if __name__ == "__main__":
     from pathlib import Path
     file = Path(__file__).stem  # get file name without suffix

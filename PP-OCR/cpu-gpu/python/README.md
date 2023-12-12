@@ -27,6 +27,10 @@ git clone https://github.com/PaddlePaddle/PaddleOCR.git
 git checkout dygraph
 cd PaddleOCR/deploy/fastdeploy/cpu-gpu/python
 
+#####
+# 模型列表 https://github.com/PaddlePaddle/PaddleOCR/blob/release/2.7/doc/doc_ch/models_list.md
+#####
+
 # 下载PP-OCRv3文字检测模型
 wget https://paddleocr.bj.bcebos.com/PP-OCRv3/chinese/ch_PP-OCRv3_det_infer.tar
 tar -xvf ch_PP-OCRv3_det_infer.tar
